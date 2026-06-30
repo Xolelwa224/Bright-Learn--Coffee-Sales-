@@ -281,7 +281,14 @@ SELECT
         ELSE 'Expensive Spend'
     END AS Spend_Bucket            ---Spend Bucket
 FROM bright_coffee_shop_sales;
+ 
 
+SELECT 
+    ROUND(SUM(CAST(transaction_qty AS DOUBLE) * CAST(REPLACE(unit_price, ',', '.') AS DOUBLE)), 2) AS revenue
+FROM bright_coffee_shop_sales;
+        
+        
+       
 
 
 
