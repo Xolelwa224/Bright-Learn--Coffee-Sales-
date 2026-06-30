@@ -255,6 +255,13 @@ SELECT
     product_type,
     product_detail,
     transaction_time,
+    DAYNAME(transaction_date) AS day_name,    --- day name (Monday,Tuesday...)
+    MONTHNAME(transaction_date) AS month_name,  --- month name (January,February...)
+    DAY(transaction_date) AS day_number,
+    CASE 
+        WHEN DAYNAME(transaction_date) IN ('Saturday', 'Sunday') THEN 'Weekend'
+        ELSE 'Weekday'
+    END AS day_type,        --- weekday vs weekend
     CASE
         WHEN HOUR(transaction_time) BETWEEN 6 AND 10 THEN 'Morning'
         WHEN HOUR(transaction_time) BETWEEN 11 AND 13 THEN 'Afternoon'  ---Time Bucket
